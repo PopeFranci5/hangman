@@ -1,0 +1,75 @@
+#words-container {
+    font-size: 4em;
+    margin-bottom: 1em;
+}
+
+#hangman-container {
+    position: relative;
+    margin-left: 2em;
+}
+
+#lives {
+    color: red;
+}
+
+#wrong-letters {
+    letter-spacing: 0.2em
+}
+
+#secret-word span {
+    padding: 4px;
+}
+
+#hangman-container img {
+    position: absolute;
+}
+
+#hangman-1 {
+    display: none;
+}
+ 
+#hangman-2 {
+    display: none;
+}
+ 
+#hangman-3 {
+    display: none;
+    left: 172px;
+}
+ 
+#hangman-4 {
+    display: none;
+    left: 145px;
+    top: 45px;
+}
+ 
+#hangman-5 {
+    display: none;
+    top: 102px;
+    left: 172px;
+}
+ 
+#hangman-6 {
+    display: none;
+    top: 120px;
+    left: 142px;
+}
+ 
+#hangman-7 {
+    display: none;
+    top: 120px;
+    left: 177px;
+}
+ 
+#hangman-8 {
+    display: none;
+    top: 180px;
+    left: 142px;
+}
+ 
+#hangman-9 {
+    display: none;
+    top: 180px;
+    left: 177px;
+}
+ 
