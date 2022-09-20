@@ -57,15 +57,16 @@ document.addEventListener('keydown', (e) => {
             wrongLetterDiv.innerHTML += charGuess;
             lives--;
             strike++;
-            if (lives == 0) {
-                livesDiv.innerHTML = 'GAME OVER!<br>' + secretWord;
-            } else {
+            } if (lives > 0) {
                 livesDiv.innerText = lives;
                 if (strike > 0) {
                     let stickDiv = document.getElementById("hangman-" + strike);
                     stickDiv.style.display = "block";
                 }
-            }
+            } else {
+                livesDiv.innerHTML = 'GAME OVER!<br>' + secretWord;
+                let stickDiv = document.getElementById("hangman-9");
+                stickDiv.style.display = "block";
         }
     }
 });
