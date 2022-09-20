@@ -1,7 +1,10 @@
 const secretWordDiv = document.getElementById('secret-word');
 const wrongLettersDiv = document.getElementById('wrong-letters');
+const wrongLetterDiv = document.getElementById("wrong-word");
 const livesDiv = document.getElementById('lives');
+let inCorrectLetter = [];
 let lives = 9;
+let strike = 0;
 let secretWord = '';
 
 fetch('words_hangman.txt')
@@ -37,94 +40,32 @@ for (let i = 0; i < secretWord.length; i++) {
 
 }
 document.addEventListener('keydown', (e) => {
-
     const charGuess = e.key.toUpperCase();
-    if (alphabet.includes(charGuess) && lives != 0 ) {
+    if (alphabet.includes(charGuess) && lives != 0) {
+
         let isCorrectLetter = false;
 
-    for (let i = 0; i < secretWord.length; i++) {
-        if (secretWord[i].toUpperCase() == charGuess) {
-            const charSpan = document.getElementById('char-' + i)
-            charSpan.innerText = charGuess;
-            isCorrectLetter = true;
+        for (let i = 0; i < secretWord.length; i++) {
+            if (secretWord[i].toUpperCase() == charGuess) {
+                const charSpan = document.getElementById('char-' + i)
+                charSpan.innerText = charGuess.toUpperCase();
+                isCorrectLetter = true;
+            }
         }
-
-    }
-    if (!isCorrectLetter && !inncorrectLetters.includes(charGuess)) {
-        inncorrectLetters.push(charGuess);
-        wrongLettersDiv.innerHTML += charGuess;
-        lives--;
-        if (lives == 0) {
-            livesDiv.innerHTML = "GAME OVER!" + "<br>" + secretWord.toUpperCase();
-        } else {
-            livesDiv.innerText = lives;
+        if (!isCorrectLetter && !inCorrectLetter.includes(charGuess)) {
+            inCorrectLetter.push(charGuess);
+            wrongLetterDiv.innerHTML += charGuess;
+            lives--;
+            strike++;
+            if (lives == 0) {
+                livesDiv.innerHTML = 'GAME OVER!<br>' + secretWord;
+            } else {
+                livesDiv.innerText = lives;
+                if (strike > 0) {
+                    let stickDiv = document.getElementById("hangman-" + strike);
+                    stickDiv.style.display = "block";
+                }
+            }
         }
-
     }
-    if (lives == 8) {
-        document.getElementById("hangman-1").style.display = "block";
-    }
-    else if (lives == 7) {
-        document.getElementById("hangman-2").style.display = "block";
-        document.getElementById("hangman-1").style.display = "block";
-    }
-    else if (lives == 6) {
-        document.getElementById("hangman-3").style.display = "block";
-        document.getElementById("hangman-1").style.display = "block";
-        document.getElementById("hangman-2").style.display = "block";
-    }
-    else if (lives == 5) {
-        document.getElementById("hangman-3").style.display = "block";
-        document.getElementById("hangman-1").style.display = "block";
-        document.getElementById("hangman-2").style.display = "block";
-        document.getElementById("hangman-4").style.display = "block";
-    }
-    else if (lives == 4) {
-        document.getElementById("hangman-3").style.display = "block";
-        document.getElementById("hangman-1").style.display = "block";
-        document.getElementById("hangman-2").style.display = "block";
-        document.getElementById("hangman-4").style.display = "block";
-        document.getElementById("hangman-5").style.display = "block";
-    }
-    else if (lives == 3) {
-        document.getElementById("hangman-3").style.display = "block";
-        document.getElementById("hangman-1").style.display = "block";
-        document.getElementById("hangman-2").style.display = "block";
-        document.getElementById("hangman-4").style.display = "block";
-        document.getElementById("hangman-5").style.display = "block";
-        document.getElementById("hangman-6").style.display = "block";
-    }
-    else if (lives == 2) {
-        document.getElementById("hangman-3").style.display = "block";
-        document.getElementById("hangman-1").style.display = "block";
-        document.getElementById("hangman-2").style.display = "block";
-        document.getElementById("hangman-4").style.display = "block";
-        document.getElementById("hangman-5").style.display = "block";
-        document.getElementById("hangman-6").style.display = "block";
-        document.getElementById("hangman-7").style.display = "block";
-    }
-    else if (lives == 1) {
-        document.getElementById("hangman-3").style.display = "block";
-        document.getElementById("hangman-1").style.display = "block";
-        document.getElementById("hangman-2").style.display = "block";
-        document.getElementById("hangman-4").style.display = "block";
-        document.getElementById("hangman-5").style.display = "block";
-        document.getElementById("hangman-6").style.display = "block";
-        document.getElementById("hangman-7").style.display = "block";
-        document.getElementById("hangman-8").style.display = "block";
-    }
-    else if (lives == 0) {
-        document.getElementById("hangman-3").style.display = "block";
-        document.getElementById("hangman-1").style.display = "block";
-        document.getElementById("hangman-2").style.display = "block";
-        document.getElementById("hangman-4").style.display = "block";
-        document.getElementById("hangman-5").style.display = "block";
-        document.getElementById("hangman-6").style.display = "block";
-        document.getElementById("hangman-7").style.display = "block";
-        document.getElementById("hangman-8").style.display = "block";
-        document.getElementById("hangman-8").style.display = "block";
-        document.getElementById("hangman-9").style.display = "block";
-    }
-}
-    console.log(charGuess, inncorrectLetters);
 });
